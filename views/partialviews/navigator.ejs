@@ -1,0 +1,64 @@
+<!-- 採用Bootstrap的導覽列設計 -->
+<nav class="navbar navbar-default" style="font-family:標楷體">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Node網路服務(數學服務與BMI計算服務)之操作介面網站
+                 <span class="text-danger" class="text-small"><small>(by 洪敏雄)</small></span></a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li><a id="home">首頁</a></li>
+          <li><a id="math">數學服務</a></li>
+          <li><a id="bmi">BMI計算服務</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- 使導覽列超連結可以運作之javascript codes -->
+  <script>
+      // 點擊[首頁超連結]，將網頁導向網站首頁
+      var home_element = document.getElementById("home");
+      home_element.href = '/';
+      // 點擊[數學服務超連結]，將網頁導向數學服務操作網頁
+      var math_element = document.getElementById("math");
+      math_element.href = '/math';
+      // 點擊[BMI計算服務超連結]，將網頁導向BMI計算服務操作網頁
+      var math_element = document.getElementById("bmi");
+      math_element.href = '/bmi';
+  </script>
+  
+  <!-- 裝扮導覽列顏色與超連結效果之CSS -->
+  <style>
+      .navbar {
+          background-color: pink !important;
+      }
+  
+      .navbar .navbar-brand {
+          color: green !important;
+          font-size: 18px;
+          font-weight:bold;
+      }
+  
+      .navbar li a {
+          color: #0000ff !important;
+                  font-size: 16px;
+          font-weight:bold;
+      }
+  
+      .navbar-nav li a:hover, .navbar-nav li.active a {
+          color: #f4511e !important;
+          background-color: #fff !important;
+      }
+  
+      .navbar-default .navbar-toggle {
+          border-color: transparent;
+          color: #fff !important;
+      } 
+  </style>
+  

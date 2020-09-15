@@ -1,0 +1,69 @@
+<!-- !DOCTYPE html是宣告這個網頁是基於HTML5所寫的 -->
+<!DOCTYPE html> 
+<html> 
+<!-- head為網頁的表頭，通常將CSS、引用bootstrap、jquery等meta data，以及javascript函數放在表頭內 -->
+<head>
+	<!-- 包含partialviews目錄下之head.ejs檔案，以載入jquery及bootstrap函數庫 --> 
+	<% include partialviews/head.ejs %>
+
+	<!-- 設定網頁之標題 -->
+	<title><%= title %></title>
+	<!-- 以下這個匿名函數是jquery的ready事件處理方法，當網頁Ready好的就會自動執行 -->
+	<!-- 因此，可以把要註冊的所有事件處理函數及需要先執行的命令放在這個函數內 -->
+	<script>
+		$(function(){
+		    // 幫id為btn1的按鈕標籤註冊了點擊事件的處理方法
+			$('#btn1').click(function(){
+				console.log($('#height').val());
+				console.log($('#weight').val());
+				$.ajax({
+				url:"/bmi",
+				method: "POST",
+				data: {height: $('#height').val(), weight: $('#weight').val()},
+				datatype: "json",
+				success: function(data){
+						$('#result').val(data.result);
+					}
+				});
+			});
+			
+			// 幫id為btnhome的按鈕標籤註冊了點擊事件的處理方法，導覽到[網站首頁]
+			$('#btnhome').click(function(){
+				 window.location.href = '/';
+			});
+		})		
+	</script>
+</head>
+<!-- body為網頁的內容，也就是呈現使用者介面UI的地方 -->
+<body class="container" class="bg-warning" style="font-family:標楷體;">
+<!-- 包含partialviews目錄下之navigator.ejs檔案，以載入使用bootstrap設計之導覽列 -->
+<% include partialviews/navigator.ejs %>
+
+<!-- 以下為操作介面UI之設計 -->
+<div  style="text-align:center;">
+	<!-- 操作介面之標題 -->
+	<h2 class="bg-primary"><b>BMI計算服務操作網頁(使用Ajax+JSON)</b></h2>
+
+	<!-- 操作介面之內容 -->
+	<table style="font-size:large; margin-left:auto; margin-right:auto;">
+		<tr>
+			<td><b class="text-primary" style="text-align:right;">身高(公分)：</b></td>
+			<td><input type="number" id="height"></td>
+		</tr>
+		<tr>
+			<td><b class="text-primary" style="text-align:right;">體重(公斤)：</b></td>
+			<td><input type="number" id="weight"></td>
+		</tr>
+		<tr>
+			<td><b class="text-primary" style="text-align:right;">BMI值：</b>  </td>
+			<td><input type="text" id="result"></td>
+		</tr>
+	</table>
+	<button id="btn1" class="btn btn-success btn-md"><b>計算</b></button> <br/> <br/>
+	
+	<!-- 回首頁之按鈕 -->
+	<button id="btnhome" class="btn btn-info btn-sm"><b>回首頁</b></button>
+	
+</div>
+</body>
+</html>
